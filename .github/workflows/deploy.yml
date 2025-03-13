@@ -1,0 +1,33 @@
+name: Crawling Every Midnight
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 매일 자정에 실행
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Node.js 환경 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 의존성(라이브러리) 설치
+        run: npm ci
+
+      - name: Puppeteer 설치
+        run: npm install puppeteer
+
+      - name: 크롤링 실행
+        run: node index.js # 크롤링 스크립트 실행
+
+      - name: 결과 파일 커밋 및 푸시
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update top100.json"
+          file_pattern: top100.json
