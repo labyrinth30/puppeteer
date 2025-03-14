@@ -1,8 +1,8 @@
-name: Crawling Every Midnight
+name: Crawling Every 5 Minutes
 
 on:
   schedule:
-    - cron: '0 0 * * *' # 매일 자정에 실행
+    - cron: '*/5 * * * *' # 5분마다 실행
 
 jobs:
   crawl:
