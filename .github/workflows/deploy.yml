@@ -19,10 +19,7 @@ jobs:
 
       - name: 의존성(라이브러리) 설치
         run: npm ci
-
-      - name: Puppeteer 설치
-        run: npm install puppeteer
-
+        
       - name: 크롤링 실행
         run: node index.js # 크롤링 스크립트 실행
 
