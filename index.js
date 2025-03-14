@@ -7,12 +7,10 @@ async function run() {
     });
     const page = await browser.newPage();
     await page.goto('https://vibe.naver.com/chart/total');
-    const html = await page.content();
-    const title = await page.title();
-    const text = await page.evaluate(() => {
-        return document.querySelector('body').innerText;
-    }); 
-    
+
+    // '.tracklist tbody tr' 요소가 나타날 때까지 기다립니다.
+    await page.waitForSelector('.tracklist tbody tr');
+
     const songs = await page.$$eval('.tracklist tbody tr', (elements) => 
         elements.map((e) => ({
             rank: e.querySelector('.rank span').innerText,
