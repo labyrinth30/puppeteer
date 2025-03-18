@@ -1,8 +1,8 @@
 name: Crawling Every Hour
 
-on:
-  schedule:
-    - cron: '0 0 * * *' # 1시간마다 실행
+# on:
+  # schedule:
+    # - cron: '0 0 * * *' # 1시간마다 실행
 
 jobs:
   crawl:
